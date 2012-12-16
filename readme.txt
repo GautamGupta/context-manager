@@ -4,7 +4,7 @@ Donate link: http://pbweb.co.uk/donate
 Tags:  context, rules, widget logic, menu rules, body class, widgets, parent menu, active menu
 Requires at least: 3.2
 Tested up to: 3.5
-Stable tag: 1.0.1
+Stable tag: 1.0.2
 
 Make your site react to contextual conditions using a point and click interface
 
@@ -54,6 +54,9 @@ If you're stuck, ask me for help on [Twitter](http://twitter.com/phill_brown).
 1. An example setup for a products section in a online shop
 
 == Changelog ==
+
+= 1.0.2 =
+* [Bugfix]: Body class and widget reactions caused an error when no rules were set up
 
 = 1.0.1 =
 * [Bugfix]: Invalid foreach warning when no rules were added in get_rules()

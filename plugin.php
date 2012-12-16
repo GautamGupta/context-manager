@@ -4,7 +4,7 @@ Plugin Name: Context Manager
 Description: Context-based rules for menus, widgets and the body class.
 Author: Phill Brown
 Author URI: http://pbweb.co.uk
-Version: 1.0.1
+Version: 1.0.2
 
 Copyright 2012 Phill Brown (email: wp@pbweb.co.uk)
 

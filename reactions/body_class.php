@@ -25,7 +25,7 @@ class Context_Manager_Reaction_Body_Class extends Context_Manager_Reaction {
     // On body_class
     function add_classes( $classes ) {
 
-        if ( ! $context_rules = $this->get_rules() ) return;
+        if ( ! $context_rules = $this->get_rules() ) return $classes;
         foreach ( $context_rules as $context_rule ) {
             if ( ! $this->plugin->conditions_match( $context_rule ) ) continue;
             
