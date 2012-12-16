@@ -4,7 +4,7 @@ Donate link: http://pbweb.co.uk/donate
 Tags:  context, rules, widget logic, menu rules, body class, widgets, parent menu, active menu
 Requires at least: 3.2
 Tested up to: 3.5
-Stable tag: 1.0
+Stable tag: 1.0.1
 
 Make your site react to contextual conditions using a point and click interface
 
@@ -36,7 +36,7 @@ Context Manager can fix all of these things.
 1. Enter a meaningful class name in the *body class* reaction
 1. Hit publish
 
-See a [screenshot](http://wordpress.org/extend/plugins/context-manager/screenshots/) of the below setup.
+See a [screenshot](http://wordpress.org/extend/plugins/context-manager/screenshots/) of the above setup.
 
 = Support =
 
@@ -52,3 +52,8 @@ If you're stuck, ask me for help on [Twitter](http://twitter.com/phill_brown).
 == Screenshots ==
 
 1. An example setup for a products section in a online shop
+
+== Changelog ==
+
+= 1.0.1 =
+* [Bugfix]: Invalid foreach warning when no rules were added in get_rules()

@@ -14,10 +14,6 @@ abstract class Context_Manager_Reaction extends PB_Framework_Base {
     // Display the form in the reactions meta box
     abstract function form();
 
-    // TODO: Implement
-    // Custom functionality when the rule is saved
-    function update() {}
-
     // Extra display hooks above and below the main form. Needs to return output, not echo
     function display_header() {}
     function display_footer() {}
@@ -25,8 +21,10 @@ abstract class Context_Manager_Reaction extends PB_Framework_Base {
     // Get context rules with reaction applied
     protected function get_rules() {
 
+        // No form registered
+        if ( ! $this->form() ) return;
+
         // Setup meta query conditions
-        // TODO: change query compare types accordingly with the type of field
         $meta_queries = array();
         foreach( $this->form() as $field_name => $field_data ) {
             $meta_queries[] = array(

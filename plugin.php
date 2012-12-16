@@ -4,7 +4,7 @@ Plugin Name: Context Manager
 Description: Context-based rules for menus, widgets and the body class.
 Author: Phill Brown
 Author URI: http://pbweb.co.uk
-Version: 1.0
+Version: 1.0.1
 
 Copyright 2012 Phill Brown (email: wp@pbweb.co.uk)
 
@@ -21,11 +21,6 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
-
-// TODOS:
-// Implement update() on reactions
-// Make meta keys private
-// Import feature for woosidebars and menu rules users
 
 // Include PB Framework
 require_once dirname( __FILE__ ) . '/libs/pb-framework/base.php';
@@ -112,8 +107,6 @@ class Context_Manager extends PB_Framework_Base {
 
     // Checking if conditions match
     function conditions_match( $context_rule ) {
-
-        // TODO: currently there's only 1 expression field but in the future support multiple expressions tied with and/or
         foreach ( $this->meta_boxes['conditions']->get_fields_flat() as $name => $field_def ) {
             $match = eval( 'return ' . get_post_meta( $context_rule->ID, $name, true ) . ';' );
         }
