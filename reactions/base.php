@@ -22,23 +22,23 @@ abstract class Context_Manager_Reaction extends PB_Framework_Base {
     protected function get_rules() {
 
         // No form registered
-        if ( ! $this->form() ) return;
+        if ( ! $this->form( false ) ) return;
 
         // Setup meta query conditions
         $meta_queries = array();
-        foreach( $this->form() as $field_name => $field_data ) {
+        foreach( $this->form( false ) as $field_name => $field_data ) {
             $meta_queries[] = array(
                 'key' => $this->field_prefix() . $field_name,
                 'value' => '',
                 'compare' => '!=',
             );
         }
-
+        
         // Get context rules
         return get_posts( array(
             'post_type' => $this->plugin->post_type,
             'numberposts' => -1,
-            'meta_query' => array_merge( array( 'condition' => 'OR' ), $meta_queries ),
+            'meta_query' => array_merge( array( 'relation' => 'OR' ), $meta_queries ),
         ) );
     }
 

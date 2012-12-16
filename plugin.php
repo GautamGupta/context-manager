@@ -1,10 +1,10 @@
 <?php
 /*
 Plugin Name: Context Manager
-Description: Context-based rules for menus, widgets and the body class.
+Description: Make your site react to users' context by changing your theme's CSS and JavaScript files, navigation menus, sidebars and the HTML body tag.
 Author: Phill Brown
 Author URI: http://pbweb.co.uk
-Version: 1.0.2
+Version: 1.1
 
 Copyright 2012 Phill Brown (email: wp@pbweb.co.uk)
 
@@ -38,14 +38,14 @@ class Context_Manager extends PB_Framework_Base {
 
         // Setup reactions
         require_once dirname( __FILE__ ) . '/reactions/base.php';
-        foreach ( array( 'Menu', 'Widgets', 'Body_Class' ) as $reaction ) {
+        foreach ( array( 'Assets', 'Menu', 'Widgets', 'Body_Class' ) as $reaction ) {
 
             // Include reaction
             require_once dirname( __FILE__ ) . '/reactions/' . strtolower( $reaction ) . '.php';
 
             // Instantiate reactions
             $class_name = 'Context_Manager_Reaction_' . $reaction;
-            $reactions[ $class_name ] = new $class_name( &$this );
+            $reactions[ $class_name ] = new $class_name( $this );
         }
 
         // Allow third-party plugins to add their own reactions using add_filter( 'menu_rules_reactions' )
@@ -54,7 +54,7 @@ class Context_Manager extends PB_Framework_Base {
         // Load admin
         if ( is_admin() ) {
             require_once dirname( __FILE__ ) . '/admin/admin.php';
-            $admin = new Context_Manager_Admin( &$this );
+            $admin = new Context_Manager_Admin( $this );
         }
 
         // Load common functionality
@@ -74,7 +74,7 @@ class Context_Manager extends PB_Framework_Base {
 
         $this->meta_boxes = array(
             'conditions' => new Context_Manager_Meta_Box_Conditions(),
-            'reactions' => new Context_Manager_Meta_Box_Reactions( &$this ),
+            'reactions' => new Context_Manager_Meta_Box_Reactions( $this ),
         );
 
         // Setup the post type that stores context rules

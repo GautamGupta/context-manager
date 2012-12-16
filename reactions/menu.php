@@ -53,7 +53,7 @@ class Context_Manager_Reaction_Menu extends Context_Manager_Reaction {
             // Action
             'rules' => array(
                 'title' => __( 'Apply this rule:' , 'context-manager' ),
-                'type' => 'radio',
+                'type' => 'select',
                 'value' => array_combine(
                     array_keys( $this->handlers ),
                     array_map( create_function( '$v', 'return $v->description;' ), $this->handlers )
@@ -109,7 +109,7 @@ class Context_Manager_Reaction_Menu extends Context_Manager_Reaction {
                 if ( ! $this->handlers[ $applied_handler ] ) continue;
 
                 // Let the menu handler do the magic
-                call_user_func( array( $this->handlers[ $applied_handler ], 'handler' ), $context_rule_data, &$this );
+                call_user_func_array( array( $this->handlers[ $applied_handler ], 'handler' ), array( $context_rule_data, &$this ) );
             }
         }
     }

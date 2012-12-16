@@ -10,10 +10,10 @@ class Context_Manager_Reaction_Widgets extends Context_Manager_Reaction {
         parent::__construct( $plugin, array( 'name' => 'Widgets' ) );
     }
 
-    function form() {
+    function form( $preprocess = true ) {
 
         // Hack to stop wp_get_sidebars_widgets() getting in an infinite loop
-        if ( ! $this->form_skip_get_values ) {
+        if ( $preprocess ) {
             // Map widgets and sidebars
             foreach( wp_get_sidebars_widgets() as $sidebar_id => $sidebar_widgets ) {
 
@@ -52,11 +52,7 @@ class Context_Manager_Reaction_Widgets extends Context_Manager_Reaction {
     // On sidebars_widgets
     function hide_widgets( $sidebars_widgets ) {
 
-        // As we're calling wp_get_sidebars_widgets() in form() - we need a hack to stop PHP getting into an infinite loop
-        $this->form_skip_get_values = true;
         if ( ! $context_rules = $this->get_rules() ) return $sidebars_widgets;
-        $this->form_skip_get_values = false;
-
         foreach ( $context_rules as $context_rule ) {
             if ( ! $this->plugin->conditions_match( $context_rule ) ) continue;
 
