@@ -4,7 +4,7 @@ Plugin Name: Context Manager
 Description: Make your site react to users' context by changing your theme's CSS and JavaScript files, navigation menus, sidebars and the HTML body tag.
 Author: Phill Brown
 Author URI: http://pbweb.co.uk
-Version: 1.1
+Version: 1.1.1
 
 Copyright 2012 Phill Brown (email: wp@pbweb.co.uk)
 
