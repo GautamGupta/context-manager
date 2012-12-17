@@ -18,7 +18,7 @@ class Context_Manager_Reaction_Widgets extends Context_Manager_Reaction {
             foreach( wp_get_sidebars_widgets() as $sidebar_id => $sidebar_widgets ) {
 
                 // Skip sidebars with no active widgets
-                if ( ! $sidebar_widgets || $sidebar_id == 'wp_inactive_widgets' ) continue;
+                if ( ! $sidebar_widgets || $sidebar_id == 'wp_inactive_widgets' || substr( $sidebar_id, 0, 16 ) == 'orphaned_widgets'  ) continue;
 
                 $widgets[ $GLOBALS['wp_registered_sidebars'][ $sidebar_id ]['name'] ] = array_combine(
                     $sidebar_widgets,
