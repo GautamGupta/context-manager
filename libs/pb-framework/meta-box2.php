@@ -16,9 +16,7 @@ abstract class PB_Meta_Box2 {
     // On init
     function __construct() {
         add_action( 'save_post', array( &$this, 'save' ), 10, 2 );
-
-        wp_register_style( 'pb-meta-box', plugins_url( '/assets/css/meta-box.css', __FILE__ ) );
-        wp_register_script( 'pb-tabs', plugins_url( '/assets/js/tabs.js', __FILE__ ), array( 'jquery' ) );
+        add_action( 'admin_enqueue_scripts', array( &$this, 'register_assets' ) );
     }
 
     // Display meta box
@@ -61,6 +59,12 @@ abstract class PB_Meta_Box2 {
                 add_post_meta( $post_id, $field_name, $_POST[$field_name], true ) or update_post_meta( $post_id, $field_name, $_POST[$field_name] );
             }
         }
+    }
+
+    // Register stylesheets and JavaScript libraries
+    function register_assets() {
+        wp_register_style( 'pb-meta-box', plugins_url( '/assets/css/meta-box.css', __FILE__ ) );
+        wp_register_script( 'pb-tabs', plugins_url( '/assets/js/tabs.js', __FILE__ ), array( 'jquery' ) );
     }
 
     // To run on admin_print_styles

@@ -4,7 +4,7 @@ Plugin Name: Context Manager
 Description: Make your site react to users' context by changing your theme's CSS and JavaScript files, navigation menus, sidebars and the HTML body tag.
 Author: Phill Brown
 Author URI: http://pbweb.co.uk
-Version: 1.1.1
+Version: 1.1.2
 
 Copyright 2012 Phill Brown (email: wp@pbweb.co.uk)
 
@@ -62,16 +62,16 @@ class Context_Manager extends PB_Framework_Base {
 
         // Internationalise
         load_plugin_textdomain( 'menu_rules', false, basename( dirname( __FILE__ ) ) . '/languages' );
+
+        // Meta box libraries must be included on plugins_loaded for scb_framework utilities
+        require_once dirname( __FILE__ ) . '/admin/meta-box-conditions.php';
+        require_once dirname( __FILE__ ) . '/admin/meta-box-reactions.php';
     }
 
     // On init
     function init() {
 
         // Init meta box functionality
-        require_once dirname( __FILE__ ) . '/libs/pb-framework/meta-box2.php';
-        require_once dirname( __FILE__ ) . '/admin/meta-box-conditions.php';
-        require_once dirname( __FILE__ ) . '/admin/meta-box-reactions.php';
-
         $this->meta_boxes = array(
             'conditions' => new Context_Manager_Meta_Box_Conditions(),
             'reactions' => new Context_Manager_Meta_Box_Reactions( $this ),

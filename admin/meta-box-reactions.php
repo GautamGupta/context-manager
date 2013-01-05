@@ -1,5 +1,6 @@
 <?php
 
+require_once dirname( __FILE__ ) . '/../libs/pb-framework/meta-box2.php';
 class Context_Manager_Meta_Box_Reactions extends PB_Meta_Box2 {
 
     // Setup meta box
