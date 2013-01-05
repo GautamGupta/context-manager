@@ -11,9 +11,9 @@ class Context_Manager_Reaction_Assets extends Context_Manager_Reaction {
 
     function form( $preprocess = true ) {
 
-        if ( $preprocess ) {
+        global $wp_styles, $wp_scripts;
 
-            global $wp_styles, $wp_scripts;
+        if ( $preprocess && isset( $wp_styles ) && isset( $wp_scripts ) ) {
 
             // We need to call wp_enqueue_scripts to get the queued frontend assets
             // This is reset once we have our data

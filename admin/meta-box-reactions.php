@@ -3,7 +3,7 @@
 require_once dirname( __FILE__ ) . '/../libs/pb-framework/meta-box2.php';
 class Context_Manager_Meta_Box_Reactions extends PB_Meta_Box2 {
 
-    // Setup meta box
+    // On init
     function __construct( $plugin ) {
 
         $this->plugin = $plugin;
@@ -13,9 +13,16 @@ class Context_Manager_Meta_Box_Reactions extends PB_Meta_Box2 {
 
         parent::__construct();
 
-        // Meta box only used on menu_rules post type
+        // Meta box only used on context_rules post type
         $this->post_type = $this->plugin->post_type;
 
+        add_action( 'admin_init', array( &$this, 'setup_reactions' ) );
+
+    }
+
+    // On admin_init
+    function setup_reactions() {
+        
         // Display reactions
         foreach ( $this->plugin->reactions as $reaction_namespace => $reaction ) {
             if ( $reaction->form() ) {
