@@ -2,7 +2,12 @@
 // General base class
 abstract class PB_Framework_Base {
 
+    static $instance;
     protected $vars;
+
+    function __construct() {
+        self::$instance =& $this;
+    }
 
     function __get( $name ) {
         return apply_filters(

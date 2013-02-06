@@ -4,7 +4,7 @@ Donate link: http://pbweb.co.uk/donate
 Tags:  context, wp_enqueue_styles, wp_enqueue_scripts, rules, widget logic, menu rules, body class, widgets, parent menu, active menu
 Requires at least: 3.2
 Tested up to: 3.5
-Stable tag: 1.1.3
+Stable tag: 1.1.4
 
 Make your site react to users' context by changing your theme's CSS and JavaScript files, navigation menus, sidebars and the HTML body tag.
 
@@ -62,6 +62,9 @@ If you're stuck, ask me for help on [Twitter](http://twitter.com/phill_brown).
 2. CSS and JavaScript reactions
 
 == Changelog ==
+
+= 1.1.4 =
+* [Bugfix]: Some environments were triggering a fatal error related to html() due to an action being added to a hook too late
 
 = 1.1.3 =
 * [Bugfix]: Asset reaction generating a global site error if not logged in

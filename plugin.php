@@ -4,7 +4,7 @@ Plugin Name: Context Manager
 Description: Make your site react to users' context by changing your theme's CSS and JavaScript files, navigation menus, sidebars and the HTML body tag.
 Author: Phill Brown
 Author URI: http://pbweb.co.uk
-Version: 1.1.3
+Version: 1.1.4
 
 Copyright 2012 Phill Brown (email: wp@pbweb.co.uk)
 
@@ -25,9 +25,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 // Include PB Framework
 require_once dirname( __FILE__ ) . '/libs/pb-framework/base.php';
 
-// On plugins_loaded
-add_action( 'plugins_loaded', create_function( '', '$menu_rules = new Context_Manager();' ) );
-
 class Context_Manager extends PB_Framework_Base {
 
     // On plugins_loaded
@@ -38,7 +35,7 @@ class Context_Manager extends PB_Framework_Base {
 
         // Setup reactions
         require_once dirname( __FILE__ ) . '/reactions/base.php';
-        foreach ( array( 'Assets', 'Menu', 'Widgets', 'Body_Class' ) as $reaction ) {
+        foreach ( array( 'Menu', 'Assets', 'Widgets', 'Body_Class' ) as $reaction ) {
 
             // Include reaction
             require_once dirname( __FILE__ ) . '/reactions/' . strtolower( $reaction ) . '.php';
@@ -66,6 +63,8 @@ class Context_Manager extends PB_Framework_Base {
         // Meta box libraries must be included on plugins_loaded for scb_framework utilities
         require_once dirname( __FILE__ ) . '/admin/meta-box-conditions.php';
         require_once dirname( __FILE__ ) . '/admin/meta-box-reactions.php';
+
+        parent::__construct();
     }
 
     // On init
@@ -114,3 +113,6 @@ class Context_Manager extends PB_Framework_Base {
         return $match;
     }
 }
+
+// On plugins_loaded
+new Context_Manager();
