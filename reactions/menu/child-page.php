@@ -10,7 +10,7 @@ class Context_Manager_Reaction_Menu_Handler_Child_Page extends Context_Manager_R
     }
 
     function handler( $data, &$menu_reaction ) {
-        $this->data = $data;
+        parent::handler( $data, $menu_reaction );
         add_filter( 'wp_nav_menu_objects', array( $this, 'child_page' ) );
     }
 

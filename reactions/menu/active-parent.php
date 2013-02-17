@@ -4,17 +4,12 @@ add_filter( 'context_manager_reaction_menu_handlers', create_function( '$v', '$v
 
 class Context_Manager_Reaction_Menu_Handler_Active_Parent extends Context_Manager_Reaction_Menu_Handler {
 
-    // Context rule data
-    protected $data;
-
     function __construct() {
         $this->description = __( 'Emulate current page as a child but do not create a menu item.', 'context-manager' );
     }
 
     function handler( $data, &$menu_reaction ) {
-        $this->data = $data;
-        $this->menu_reaction = $menu_reaction;
-
+        parent::handler( $data, $menu_reaction );
         add_filter( 'wp_nav_menu_objects', array( $this, 'active_parent' ) );
     }
 

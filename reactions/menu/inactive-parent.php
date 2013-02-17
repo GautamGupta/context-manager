@@ -3,16 +3,12 @@
 add_filter( 'context_manager_reaction_menu_handlers', create_function( '$v', '$v[\'Context_Manager_Reaction_Menu_Handler_Inactive_Parent\'] = new Context_Manager_Reaction_Menu_Handler_Inactive_Parent(); return $v;' ) );
 
 class Context_Manager_Reaction_Menu_Handler_Inactive_Parent extends Context_Manager_Reaction_Menu_Handler {
-
-    // Context rule data
-    protected $data;
-
     function __construct() {
         $this->description = __('Remove all active states.', 'context-manager');
     }
 
     function handler( $data, &$menu_reaction ) {
-        $this->data = $data;
+        parent::handler( $data, $menu_reaction );
         add_filter( 'wp_nav_menu_objects', array( $this, 'run' ) );
     }
 

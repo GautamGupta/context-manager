@@ -118,5 +118,12 @@ class Context_Manager_Reaction_Menu extends Context_Manager_Reaction {
 
 // Base class for rules handlers
 abstract class Context_Manager_Reaction_Menu_Handler extends PB_Framework_Base {
-    abstract function handler( $context_rule_data, &$menu_reaction );
+
+    // Context rule data
+    protected $data;
+
+    function handler( $data, &$menu_reaction ) {
+        $this->data = $data;
+        $this->menu_reaction = $menu_reaction;
+    }
 }
