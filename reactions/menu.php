@@ -5,7 +5,7 @@ class Context_Manager_Reaction_Menu extends Context_Manager_Reaction {
     function __construct( $plugin ) {
 
         // Menu reaction handlers
-        foreach ( array( 'active-parent', 'inactive-parent', 'child-page' ) as $filename ) {
+        foreach ( array( 'active-parent', 'inactive-parent', 'child-page', 'hide-item' ) as $filename ) {
             require_once dirname( __FILE__ ) . '/menu/' . $filename . '.php';
         }
 
